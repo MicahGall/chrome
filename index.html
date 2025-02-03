@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Chrome in Guest Mode</title>
+</head>
+<body>
+    <button onclick="openGuestMode()">Open Chrome in Guest Mode</button>
+
+    <script>
+        function openGuestMode() {
+            fetch("http://localhost:5000/open-chrome")
+                .catch(err => alert("Server not running on your PC!"));
+        }
+    </script>
+</body>
+</html>
