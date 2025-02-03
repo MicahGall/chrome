@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Chrome in Guest Mode</title>
+    <title>Guest Chrome Launcher</title>
 </head>
 <body>
-    <button onclick="openGuestMode()">Open Chrome in Guest Mode</button>
-
+    <h1>Launching Guest Chrome...</h1>
     <script>
-        function openGuestMode() {
-            fetch("http://localhost:5000/open-chrome")
-                .catch(err => alert("Server not running on your PC!"));
+        function launchGuestChrome() {
+            const url = "https://www.google.com";
+            window.open("chrome://guest", "_blank"); // This only works on some Chromium-based browsers
+            setTimeout(() => {
+                window.location.href = url; // Fallback for browsers that don't support `chrome://guest`
+            }, 1000);
         }
+        
+        launchGuestChrome();
     </script>
 </body>
 </html>
