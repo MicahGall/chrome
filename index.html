@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launch Guest Chrome</title>
+    <title>Guest Chrome Stream</title>
 </head>
 <body>
-    <h1>Launching Guest Chrome...</h1>
+    <h1>Guest Chrome Streaming</h1>
+    <img id="videoStream" width="100%" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
     <script>
-        fetch("http://192.168.56.1/") // Replace with your actual local IP
+        var socket = io("http://192.168.56.1");
+
+        socket.on("stream", function (data) {
+            document.getElementById("videoStream").src = "data:image/jpeg;base64," + data.image;
+        });
+
+        fetch("http://YOUR_IP_HERE:5000/")
             .then(response => console.log("Guest Chrome Launched"))
             .catch(error => console.error("Failed to launch:", error));
     </script>
